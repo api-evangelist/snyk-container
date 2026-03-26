@@ -1,11 +1,15 @@
 aid: snyk-container
 name: Snyk Container
 description: >-
-  Snyk Container helps find and fix vulnerabilities in container images and Kubernetes workloads.
+  Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes workloads, integrating into existing development workflows to provide continuous security monitoring throughout the container lifecycle.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Containers
+  - Security
+  - Vulnerability Management
+  - Container Images
+  - Kubernetes
 url: >-
   https://raw.githubusercontent.com/api-evangelist/snyk-container/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +19,34 @@ apis:
   - aid: snyk-container:snyk-container
     name: Snyk Container
     description: >-
-      Snyk Container helps find and fix vulnerabilities in container images and Kubernetes workloads.
-    humanURL: https://github.com/api-evangelist/snyk-container
+      Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes workloads, integrating into existing development workflows to provide continuous security monitoring throughout the container lifecycle.
+    humanURL: https://snyk.io/product/container-vulnerability-management/
     tags:
       - Containers
-    properties: []
+      - Security
+      - Vulnerability Management
+      - Container Images
+      - Kubernetes
+    properties:
+      - type: Documentation
+        url: https://docs.snyk.io/scan-using-snyk/snyk-container
+      - type: Getting Started
+        url: https://docs.snyk.io/getting-started
 common:
   - type: Website
-    url: https://github.com/api-evangelist/snyk-container
+    url: https://snyk.io/
+  - type: Documentation
+    url: https://docs.snyk.io/scan-using-snyk/snyk-container
+  - type: Getting Started
+    url: https://docs.snyk.io/getting-started
+  - type: GitHub Organization
+    url: https://github.com/snyk
+  - type: Blog
+    url: https://snyk.io/blog/
+  - type: Pricing
+    url: https://snyk.io/plans/
+  - type: Sign Up
+    url: https://app.snyk.io/signup
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
