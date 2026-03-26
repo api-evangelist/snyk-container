@@ -1,0 +1,28 @@
+aid: snyk-container
+name: Snyk Container
+description: >-
+  Snyk Container helps find and fix vulnerabilities in container images and Kubernetes workloads.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Containers
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/snyk-container/refs/heads/main/apis.yml
+created: '2026-03-26'
+modified: '2026-03-26'
+specificationVersion: '0.19'
+apis:
+  - aid: snyk-container:snyk-container
+    name: Snyk Container
+    description: >-
+      Snyk Container helps find and fix vulnerabilities in container images and Kubernetes workloads.
+    humanURL: https://github.com/api-evangelist/snyk-container
+    tags:
+      - Containers
+    properties: []
+common:
+  - type: Website
+    url: https://github.com/api-evangelist/snyk-container
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
