@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/snyk-container/blob/main/json-schema/snyk-container-project-schema.json",
+  "title": "Snyk Container Project",
+  "description": "Schema for a Snyk Container scanning project, representing a monitored container image, Kubernetes workload, or Helm release.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the project"
+    },
+    "type": {
+      "type": "string",
+      "const": "project",
+      "description": "Resource type identifier"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name, typically the image name and tag (e.g. nginx:1.25)"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "containerRegistryImage",
+            "dockerfileFromScm",
+            "kubernetesMonitor",
+            "helmRelease"
+          ],
+          "description": "Type of container scanning project"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "inactive"],
+          "description": "Whether the project is actively being scanned"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the project was created"
+        },
+        "read_only": {
+          "type": "boolean",
+          "description": "Whether the project is read-only"
+        },
+        "tags": {
+          "type": "array",
+          "description": "User-defined tags for the project",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "Tag key"
+              },
+              "value": {
+                "type": "string",
+                "description": "Tag value"
+              }
+            },
+            "required": ["key", "value"]
+          }
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "recurring_tests": {
+              "type": "object",
+              "properties": {
+                "frequency": {
+                  "type": "string",
+                  "enum": ["daily", "weekly", "never"],
+                  "description": "How often to re-scan the container image"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": ["name", "type", "status"]
+    }
+  },
+  "required": ["id", "type", "attributes"]
+}

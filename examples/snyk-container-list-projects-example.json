@@ -1,0 +1,64 @@
+{
+  "title": "List Container Projects",
+  "description": "Example response from listing Snyk Container scanning projects",
+  "request": {
+    "method": "GET",
+    "url": "https://api.snyk.io/rest/orgs/{org_id}/projects?version=2024-10-15&types=containerRegistryImage",
+    "headers": {
+      "Authorization": "token snyk_api_xxxxxxxxxxxxxxxxxxxxx",
+      "Content-Type": "application/vnd.api+json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/vnd.api+json"
+    },
+    "body": {
+      "data": [
+        {
+          "id": "a8d6-4a2b-9c1e-12345abcdef0",
+          "type": "project",
+          "attributes": {
+            "name": "nginx:1.25-alpine",
+            "type": "containerRegistryImage",
+            "status": "active",
+            "created": "2026-04-15T10:00:00Z",
+            "read_only": false,
+            "tags": [
+              { "key": "team", "value": "platform" },
+              { "key": "env", "value": "production" }
+            ],
+            "settings": {
+              "recurring_tests": {
+                "frequency": "daily"
+              }
+            }
+          }
+        },
+        {
+          "id": "b7c5-3d1a-8e2f-67890fedcba9",
+          "type": "project",
+          "attributes": {
+            "name": "my-app:v2.3.1",
+            "type": "containerRegistryImage",
+            "status": "active",
+            "created": "2026-04-20T14:30:00Z",
+            "read_only": false,
+            "tags": [
+              { "key": "team", "value": "backend" }
+            ],
+            "settings": {
+              "recurring_tests": {
+                "frequency": "weekly"
+              }
+            }
+          }
+        }
+      ],
+      "links": {
+        "next": "/orgs/{org_id}/projects?version=2024-10-15&starting_after=v1.eyJpZCI6Mn0%3D"
+      }
+    }
+  }
+}

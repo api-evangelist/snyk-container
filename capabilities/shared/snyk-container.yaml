@@ -1,0 +1,410 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Snyk Container API"
+  description: >-
+    Snyk Container API enables container image vulnerability scanning, project management, SBOM generation, and issue tracking for containerized applications and Kubernetes workloads.
+  tags:
+    - Snyk
+    - Container Security
+    - Vulnerability Management
+    - Kubernetes
+    - DevSecOps
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SNYK_API_TOKEN: SNYK_API_TOKEN
+      SNYK_ORG_ID: SNYK_ORG_ID
+
+capability:
+  consumes:
+    - type: http
+      namespace: snyk-container
+      baseUri: https://api.snyk.io/rest
+      description: "Snyk Container REST API for vulnerability scanning and project management."
+      authentication:
+        type: bearer
+        token: "{{SNYK_API_TOKEN}}"
+      resources:
+        - name: projects
+          path: /orgs/{org_id}/projects
+          description: "Container scanning projects"
+          operations:
+            - name: list-container-projects
+              method: GET
+              description: "List all container scanning projects in an organization"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+                - name: types
+                  in: query
+                  type: array
+                  required: false
+                  description: "Filter by project type"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of results per page"
+              outputRawFormat: json
+              outputParameters:
+                - name: projects
+                  type: object
+                  value: "$.data"
+            - name: create-container-project
+              method: POST
+              description: "Create a new container scanning project"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+              outputRawFormat: json
+              outputParameters:
+                - name: project
+                  type: object
+                  value: "$.data"
+              body:
+                type: json
+                data:
+                  data: "{{tools.project_data}}"
+
+        - name: project-detail
+          path: /orgs/{org_id}/projects/{project_id}
+          description: "Individual container project operations"
+          operations:
+            - name: get-container-project
+              method: GET
+              description: "Get details of a specific container scanning project"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: project_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Project UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+              outputRawFormat: json
+              outputParameters:
+                - name: project
+                  type: object
+                  value: "$.data"
+            - name: delete-container-project
+              method: DELETE
+              description: "Delete a container scanning project"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: project_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Project UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: issues
+          path: /orgs/{org_id}/issues
+          description: "Container vulnerability issues"
+          operations:
+            - name: list-container-issues
+              method: GET
+              description: "List vulnerability issues found in container scans"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+                - name: scan_item.type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by scan item type"
+                - name: scan_item.id
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by project ID"
+                - name: severity
+                  in: query
+                  type: array
+                  required: false
+                  description: "Filter by severity level"
+                - name: status
+                  in: query
+                  type: array
+                  required: false
+                  description: "Filter by status"
+              outputRawFormat: json
+              outputParameters:
+                - name: issues
+                  type: object
+                  value: "$.data"
+
+        - name: targets
+          path: /orgs/{org_id}/targets
+          description: "Container registry scan targets"
+          operations:
+            - name: list-targets
+              method: GET
+              description: "List all container registry targets"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+              outputRawFormat: json
+              outputParameters:
+                - name: targets
+                  type: object
+                  value: "$.data"
+            - name: create-target
+              method: POST
+              description: "Create a new container registry scan target"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+              outputRawFormat: json
+              outputParameters:
+                - name: target
+                  type: object
+                  value: "$.data"
+              body:
+                type: json
+                data:
+                  display_name: "{{tools.display_name}}"
+                  url: "{{tools.registry_url}}"
+
+        - name: sbom
+          path: /orgs/{org_id}/projects/{project_id}/sbom
+          description: "Software Bill of Materials for container projects"
+          operations:
+            - name: get-project-sbom
+              method: GET
+              description: "Generate and retrieve SBOM for a container project"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: project_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Project UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+                - name: format
+                  in: query
+                  type: string
+                  required: false
+                  description: "SBOM format (cyclonedx1.4+json, spdx2.3+json)"
+              outputRawFormat: json
+              outputParameters:
+                - name: sbom
+                  type: object
+                  value: "$."
+
+        - name: package-issues
+          path: /orgs/{org_id}/packages/issues
+          description: "Vulnerability issues for container packages"
+          operations:
+            - name: list-package-issues
+              method: GET
+              description: "List known vulnerabilities for packages in container images"
+              inputParameters:
+                - name: org_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization UUID"
+                - name: version
+                  in: query
+                  type: string
+                  required: true
+                  description: "API version date"
+                - name: purl
+                  in: query
+                  type: string
+                  required: false
+                  description: "Package URL to filter issues"
+              outputRawFormat: json
+              outputParameters:
+                - name: issues
+                  type: object
+                  value: "$.data"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: snyk-container-rest
+      resources:
+        - path: /v1/projects
+          name: container-projects
+          description: "List and manage container scanning projects"
+          operations:
+            - method: GET
+              name: list-projects
+              description: "List all container projects"
+              call: "snyk-container.list-container-projects"
+              with:
+                org_id: "{{SNYK_ORG_ID}}"
+                version: "2024-10-15"
+              outputParameters:
+                - type: object
+                  mapping: "$.data"
+        - path: /v1/issues
+          name: container-issues
+          description: "Container vulnerability issues"
+          operations:
+            - method: GET
+              name: list-issues
+              description: "List all container vulnerability issues"
+              call: "snyk-container.list-container-issues"
+              with:
+                org_id: "{{SNYK_ORG_ID}}"
+                version: "2024-10-15"
+              outputParameters:
+                - type: object
+                  mapping: "$.data"
+        - path: /v1/targets
+          name: scan-targets
+          description: "Container registry scan targets"
+          operations:
+            - method: GET
+              name: list-targets
+              description: "List all scan targets"
+              call: "snyk-container.list-targets"
+              with:
+                org_id: "{{SNYK_ORG_ID}}"
+                version: "2024-10-15"
+              outputParameters:
+                - type: object
+                  mapping: "$.data"
+
+    - type: mcp
+      port: 9100
+      namespace: snyk-container-mcp
+      transport: http
+      tools:
+        - name: list-container-projects
+          description: "List all container scanning projects in the Snyk organization"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "snyk-container.list-container-projects"
+          with:
+            org_id: "{{SNYK_ORG_ID}}"
+            version: "2024-10-15"
+          outputParameters:
+            - type: object
+              mapping: "$.data"
+        - name: list-container-issues
+          description: "List vulnerability issues found in container scans"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "snyk-container.list-container-issues"
+          with:
+            org_id: "{{SNYK_ORG_ID}}"
+            version: "2024-10-15"
+          outputParameters:
+            - type: object
+              mapping: "$.data"
+        - name: get-project-sbom
+          description: "Generate and retrieve an SBOM for a container project"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "snyk-container.get-project-sbom"
+          with:
+            org_id: "{{SNYK_ORG_ID}}"
+            version: "2024-10-15"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-targets
+          description: "List all container registry scan targets"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "snyk-container.list-targets"
+          with:
+            org_id: "{{SNYK_ORG_ID}}"
+            version: "2024-10-15"
+          outputParameters:
+            - type: object
+              mapping: "$.data"
+        - name: delete-container-project
+          description: "Delete a container scanning project"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "snyk-container.delete-container-project"
+          with:
+            org_id: "{{SNYK_ORG_ID}}"
+            version: "2024-10-15"
+          outputParameters:
+            - type: object
+              mapping: "$."

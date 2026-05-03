@@ -1,0 +1,73 @@
+{
+  "title": "Snyk Container Project Structure",
+  "description": "JSON Structure documentation for Snyk Container scanning project data model",
+  "type": "object",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string (uuid)",
+      "required": true,
+      "description": "Unique project identifier in UUID format"
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "required": true,
+      "description": "Always 'project' — resource type discriminator"
+    },
+    {
+      "name": "attributes",
+      "type": "object",
+      "required": true,
+      "description": "Project attributes and metadata",
+      "fields": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "description": "Project name — typically the image name and tag (e.g. nginx:1.25-alpine)"
+        },
+        {
+          "name": "type",
+          "type": "enum [containerRegistryImage, dockerfileFromScm, kubernetesMonitor, helmRelease]",
+          "required": true,
+          "description": "Type of container scanning project"
+        },
+        {
+          "name": "status",
+          "type": "enum [active, inactive]",
+          "required": true,
+          "description": "Whether the project is actively monitored"
+        },
+        {
+          "name": "created",
+          "type": "string (date-time)",
+          "required": false,
+          "description": "ISO 8601 timestamp when the project was created"
+        },
+        {
+          "name": "read_only",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether the project configuration can be modified"
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "required": false,
+          "description": "User-defined key/value tags for organizing projects",
+          "items": {
+            "key": "string — tag key",
+            "value": "string — tag value"
+          }
+        },
+        {
+          "name": "settings.recurring_tests.frequency",
+          "type": "enum [daily, weekly, never]",
+          "required": false,
+          "description": "How often Snyk automatically re-scans the container image"
+        }
+      ]
+    }
+  ]
+}

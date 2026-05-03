@@ -1,0 +1,88 @@
+extends: spectral:oas
+rules:
+  snyk-container-version-required:
+    description: All Snyk REST API requests must include a version query parameter
+    message: "The 'version' query parameter is required for all Snyk REST API endpoints."
+    severity: error
+    given: "$.paths.*.*.parameters[?(@.name == 'version')]"
+    then:
+      field: required
+      function: truthy
+
+  snyk-container-org-id-uuid:
+    description: Organization IDs must be UUID format
+    message: "org_id path parameter must use UUID format."
+    severity: error
+    given: "$.paths[*].parameters[?(@.name == 'org_id')].schema"
+    then:
+      field: format
+      function: pattern
+      functionOptions:
+        match: "^uuid$"
+
+  snyk-container-bearer-auth:
+    description: Snyk APIs must use Bearer token authentication
+    message: "Security scheme must be Bearer HTTP authentication."
+    severity: error
+    given: "$.components.securitySchemes[*]"
+    then:
+      field: type
+      function: enumeration
+      functionOptions:
+        values:
+          - http
+
+  snyk-container-jsonapi-content-type:
+    description: Responses must use JSON:API content type
+    message: "Container API responses should use application/vnd.api+json content type."
+    severity: warn
+    given: "$.paths.*.*.responses.*.content"
+    then:
+      function: truthy
+
+  snyk-container-severity-enum:
+    description: Severity values must follow Snyk severity levels
+    message: "Severity must be one of: critical, high, medium, low."
+    severity: error
+    given: "$.components.schemas..severity"
+    then:
+      field: enum
+      function: truthy
+
+  snyk-container-operation-id-camel-case:
+    description: Operation IDs should use camelCase
+    message: "{{property}} operationId '{{value}}' should use camelCase."
+    severity: warn
+    given: "$.paths.*.*.operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  snyk-container-pagination-links:
+    description: Collection responses should include pagination links
+    message: "Responses returning arrays should include pagination links."
+    severity: info
+    given: "$.components.schemas.*Response.properties"
+    then:
+      field: links
+      function: truthy
+
+  snyk-container-tags-required:
+    description: All operations must have at least one tag
+    message: "Operation '{{path}}' must have at least one tag."
+    severity: error
+    given: "$.paths.*.*"
+    then:
+      field: tags
+      function: truthy
+
+  snyk-container-path-kebab-case:
+    description: Path segments should use kebab-case
+    message: "Path '{{path}}' should use kebab-case segments."
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}-]+)*$"

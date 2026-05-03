@@ -1,0 +1,50 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "snyk": "https://snyk.io/ontology/",
+    "cve": "https://cve.mitre.org/",
+    "cvss": "https://www.first.org/cvss/",
+    "k8s": "https://kubernetes.io/",
+    "oci": "https://opencontainers.org/",
+    "spdx": "https://spdx.org/",
+    "cyclonedx": "https://cyclonedx.org/",
+
+    "ContainerProject": "snyk:ContainerProject",
+    "ContainerImage": {
+      "@id": "oci:Image",
+      "@type": "@id"
+    },
+    "VulnerabilityIssue": "snyk:VulnerabilityIssue",
+    "Severity": "snyk:Severity",
+    "Remedy": "snyk:Remedy",
+    "Target": "snyk:Target",
+    "SBOM": "snyk:SBOM",
+    "Organization": "schema:Organization",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "created": "schema:dateCreated",
+    "updated": "schema:dateModified",
+    "status": "schema:status",
+    "severity": "cvss:severity",
+    "cveId": {
+      "@id": "cve:identifier",
+      "@type": "@id"
+    },
+    "imageTag": "oci:imageTag",
+    "imageDigest": "oci:imageDigest",
+    "registry": "oci:registry",
+    "projectType": "snyk:projectType",
+    "recurringFrequency": "snyk:recurringFrequency",
+    "packageUrl": "schema:url",
+    "sbomFormat": "snyk:sbomFormat",
+    "remedyType": "snyk:remedyType",
+    "upgradePackage": "snyk:upgradePackage",
+
+    "containerRegistryImage": "snyk:ContainerRegistryImageType",
+    "kubernetesMonitor": "k8s:monitor",
+    "helmRelease": "k8s:helmRelease",
+    "dockerfileFromScm": "snyk:DockerfileFromScm"
+  }
+}

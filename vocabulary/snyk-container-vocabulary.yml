@@ -1,0 +1,149 @@
+title: Snyk Container Vocabulary
+description: >-
+  Domain vocabulary for Snyk Container — covering container security scanning concepts, vulnerability classification,
+  Kubernetes workload types, and remediation strategies.
+created: '2026-05-02'
+modified: '2026-05-02'
+tags:
+  - Container Security
+  - Vulnerability Management
+  - Kubernetes
+  - DevSecOps
+
+terms:
+  - term: Container Image
+    definition: >-
+      A lightweight, standalone, executable package of software that includes everything needed to run an application:
+      code, runtime, system tools, system libraries, and settings. Snyk scans container images for known vulnerabilities.
+    tags:
+      - Container
+      - OCI
+
+  - term: Container Registry
+    definition: >-
+      A repository for storing and distributing container images. Common registries include Docker Hub, Amazon ECR,
+      Google Artifact Registry, and Azure Container Registry. Snyk integrates with registries to pull images for scanning.
+    tags:
+      - Container
+      - Infrastructure
+
+  - term: CVE
+    definition: >-
+      Common Vulnerabilities and Exposures — a public catalog of known cybersecurity vulnerabilities. Each CVE entry
+      has a unique identifier (e.g. CVE-2021-44228) and describes a specific vulnerability.
+    tags:
+      - Vulnerability
+      - Security Standards
+
+  - term: CVSS
+    definition: >-
+      Common Vulnerability Scoring System — an open standard for assessing the severity of security vulnerabilities.
+      Snyk uses CVSS scores to rate vulnerabilities as critical, high, medium, or low.
+    tags:
+      - Vulnerability
+      - Security Standards
+
+  - term: SBOM
+    definition: >-
+      Software Bill of Materials — a formal, structured inventory of all components, libraries, and dependencies that make
+      up a software application or container image. Snyk can generate SBOMs in CycloneDX and SPDX formats.
+    tags:
+      - Compliance
+      - Supply Chain Security
+
+  - term: Kubernetes Workload
+    definition: >-
+      An application running in a Kubernetes cluster, typically defined as a Deployment, StatefulSet, DaemonSet, or Job.
+      Snyk Container can monitor Kubernetes workloads continuously for new vulnerabilities.
+    tags:
+      - Kubernetes
+      - Container
+
+  - term: Helm Release
+    definition: >-
+      An instance of a Helm chart running in a Kubernetes cluster. Snyk can scan Helm releases to identify vulnerabilities
+      in the container images deployed via the chart.
+    tags:
+      - Kubernetes
+      - Helm
+
+  - term: Base Image
+    definition: >-
+      The parent image from which a container image is built. Many vulnerabilities come from base images (e.g. ubuntu:20.04,
+      node:18-alpine). Snyk recommends upgrading the base image as a key remediation strategy.
+    tags:
+      - Container
+      - Remediation
+
+  - term: purl
+    definition: >-
+      Package URL — a universal standard for identifying software packages across ecosystems (npm, PyPI, Maven, etc.)
+      using a standardized URL scheme. Snyk uses purls to identify packages in container images.
+    tags:
+      - Packaging
+      - Standards
+
+  - term: Severity
+    definition: >-
+      A rating of how serious a vulnerability is. Snyk uses four levels: critical (CVSS 9.0-10), high (7.0-8.9),
+      medium (4.0-6.9), and low (0.1-3.9).
+    tags:
+      - Vulnerability
+      - Classification
+
+  - term: Snyk Advisor
+    definition: >-
+      A Snyk tool that provides health scores for open-source packages, helping developers choose safe, well-maintained
+      dependencies before adding them to container images.
+    tags:
+      - Open Source
+      - Developer Experience
+
+  - term: Fix PR
+    definition: >-
+      An automated pull request created by Snyk that upgrades vulnerable dependencies to fixed versions. Snyk Container
+      can generate fix PRs for Dockerfile and manifest vulnerabilities.
+    tags:
+      - Remediation
+      - Automation
+
+  - term: Project
+    definition: >-
+      In Snyk, a project represents a single monitored item — in container context this is typically a container image,
+      a Kubernetes workload monitor, or a Helm release being continuously scanned.
+    tags:
+      - Snyk
+      - Organization
+
+  - term: Organization
+    definition: >-
+      A Snyk organizational unit that groups projects, members, and settings. All API requests require an org_id to
+      scope operations to the correct organization.
+    tags:
+      - Snyk
+      - Organization
+
+  - term: Snyk Container Monitor
+    definition: >-
+      A Snyk feature that continuously scans Kubernetes workloads for new vulnerabilities even when the source code
+      hasn't changed, by rechecking the container images against updated vulnerability databases.
+    tags:
+      - Kubernetes
+      - Monitoring
+      - Snyk
+
+  - term: CycloneDX
+    definition: >-
+      An OWASP standard for Software Bill of Materials (SBOM) in JSON or XML format. Snyk generates CycloneDX 1.4
+      SBOMs from container image analysis.
+    tags:
+      - SBOM
+      - Standards
+
+  - term: SPDX
+    definition: >-
+      System Package Data Exchange — a Linux Foundation standard for communicating software bill of materials including
+      components, licenses, copyrights, and security references. Snyk generates SPDX 2.3 SBOMs.
+    tags:
+      - SBOM
+      - Standards
