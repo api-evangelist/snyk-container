@@ -84,6 +84,10 @@ common:
   - type: Examples
     url: examples/snyk-container-list-issues-example.json
 
+  - type: Integrations
+    url: https://snyk.io/integrations/
+integrations:
+  - name: View partner solutions
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
