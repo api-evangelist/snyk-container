@@ -33,7 +33,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.snyk.io/scan-using-snyk/snyk-container
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.snyk.io/getting-started
       - type: OpenAPI
         url: openapi/snyk-container-openapi.yml
@@ -55,21 +55,21 @@ common:
     url: https://snyk.io/
   - type: Documentation
     url: https://docs.snyk.io/scan-using-snyk/snyk-container
-  - type: Getting Started
+  - type: GettingStarted
     url: https://docs.snyk.io/getting-started
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/snyk
   - type: Blog
     url: https://snyk.io/blog/
   - type: Pricing
     url: https://snyk.io/plans/
-  - type: Sign Up
+  - type: SignUp
     url: https://app.snyk.io/signup
   - type: REST API
     url: https://apidocs.snyk.io/
   - type: API Documentation
     url: https://docs.snyk.io/snyk-api
-  - type: Changelog
+  - type: ChangeLog
     url: https://docs.snyk.io/snyk-api/changelog
   - type: SDK
     url: https://github.com/snyk/snyk-sdk-java
