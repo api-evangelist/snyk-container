@@ -1,0 +1,263 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snyk Container API — Container Projects
+  description: 'Snyk Container API — Container Projects. 4 operations. Lead operation: List Container Projects. Self-contained
+    Naftiko capability covering one Snyk Container business surface.'
+  tags:
+  - Snyk Container
+  - Container Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNYK_CONTAINER_API_KEY: SNYK_CONTAINER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: snyk-container-container-projects
+    baseUri: https://api.snyk.io/rest
+    description: Snyk Container API — Container Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: orgs-org_id-projects
+      path: /orgs/{org_id}/projects
+      operations:
+      - name: listcontainerprojects
+        method: GET
+        description: List Container Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: org_id
+          in: path
+          type: string
+          description: The unique identifier of the Snyk organization
+          required: true
+        - name: version
+          in: query
+          type: string
+          description: API version date string (e.g. 2024-10-15)
+          required: true
+        - name: types
+          in: query
+          type: array
+          description: Filter by project type (e.g. dockerfileFromScm, containerRegistryImage)
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results per page (max 100)
+        - name: starting_after
+          in: query
+          type: string
+          description: Cursor for pagination — items after this cursor
+    - name: orgs-org_id-projects-project_id
+      path: /orgs/{org_id}/projects/{project_id}
+      operations:
+      - name: getcontainerproject
+        method: GET
+        description: Get Container Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: org_id
+          in: path
+          type: string
+          required: true
+        - name: project_id
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+          required: true
+      - name: deletecontainerproject
+        method: DELETE
+        description: Delete Container Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: org_id
+          in: path
+          type: string
+          required: true
+        - name: project_id
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+          required: true
+    - name: orgs-org_id-projects-project_id-sbom
+      path: /orgs/{org_id}/projects/{project_id}/sbom
+      operations:
+      - name: getprojectsbom
+        method: GET
+        description: Get Project SBOM
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: org_id
+          in: path
+          type: string
+          required: true
+        - name: project_id
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+          required: true
+        - name: format
+          in: query
+          type: string
+          description: SBOM format
+    authentication:
+      type: bearer
+      token: '{{env.SNYK_CONTAINER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: snyk-container-container-projects-rest
+    port: 8080
+    description: REST adapter for Snyk Container API — Container Projects. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/orgs/{org-id}/projects
+      name: orgs-org-id-projects
+      description: REST surface for orgs-org_id-projects.
+      operations:
+      - method: GET
+        name: listcontainerprojects
+        description: List Container Projects
+        call: snyk-container-container-projects.listcontainerprojects
+        with:
+          org_id: rest.org_id
+          version: rest.version
+          types: rest.types
+          limit: rest.limit
+          starting_after: rest.starting_after
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orgs/{org-id}/projects/{project-id}
+      name: orgs-org-id-projects-project-id
+      description: REST surface for orgs-org_id-projects-project_id.
+      operations:
+      - method: GET
+        name: getcontainerproject
+        description: Get Container Project
+        call: snyk-container-container-projects.getcontainerproject
+        with:
+          org_id: rest.org_id
+          project_id: rest.project_id
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecontainerproject
+        description: Delete Container Project
+        call: snyk-container-container-projects.deletecontainerproject
+        with:
+          org_id: rest.org_id
+          project_id: rest.project_id
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orgs/{org-id}/projects/{project-id}/sbom
+      name: orgs-org-id-projects-project-id-sbom
+      description: REST surface for orgs-org_id-projects-project_id-sbom.
+      operations:
+      - method: GET
+        name: getprojectsbom
+        description: Get Project SBOM
+        call: snyk-container-container-projects.getprojectsbom
+        with:
+          org_id: rest.org_id
+          project_id: rest.project_id
+          version: rest.version
+          format: rest.format
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: snyk-container-container-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snyk Container API — Container Projects. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-container-projects
+      description: List Container Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snyk-container-container-projects.listcontainerprojects
+      with:
+        org_id: tools.org_id
+        version: tools.version
+        types: tools.types
+        limit: tools.limit
+        starting_after: tools.starting_after
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-container-project
+      description: Get Container Project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snyk-container-container-projects.getcontainerproject
+      with:
+        org_id: tools.org_id
+        project_id: tools.project_id
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-container-project
+      description: Delete Container Project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: snyk-container-container-projects.deletecontainerproject
+      with:
+        org_id: tools.org_id
+        project_id: tools.project_id
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-project-sbom
+      description: Get Project SBOM
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snyk-container-container-projects.getprojectsbom
+      with:
+        org_id: tools.org_id
+        project_id: tools.project_id
+        version: tools.version
+        format: tools.format
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Snyk Container API — Issues
+  description: 'Snyk Container API — Issues. 2 operations. Lead operation: List Container Issues. Self-contained Naftiko capability
+    covering one Snyk Container business surface.'
+  tags:
+  - Snyk Container
+  - Issues
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SNYK_CONTAINER_API_KEY: SNYK_CONTAINER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: snyk-container-issues
+    baseUri: https://api.snyk.io/rest
+    description: Snyk Container API — Issues business capability. Self-contained, no shared references.
+    resources:
+    - name: orgs-org_id-issues
+      path: /orgs/{org_id}/issues
+      operations:
+      - name: listcontainerissues
+        method: GET
+        description: List Container Issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: org_id
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+          required: true
+        - name: scan_item.type
+          in: query
+          type: string
+          description: Filter issues by scan item type
+        - name: scan_item.id
+          in: query
+          type: string
+          description: Filter issues by project ID
+        - name: severity
+          in: query
+          type: array
+          description: Filter by severity level
+        - name: status
+          in: query
+          type: array
+        - name: limit
+          in: query
+          type: integer
+    - name: orgs-org_id-packages-issues
+      path: /orgs/{org_id}/packages/issues
+      operations:
+      - name: listpackageissues
+        method: GET
+        description: List Package Issues
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: org_id
+          in: path
+          type: string
+          required: true
+        - name: version
+          in: query
+          type: string
+          required: true
+        - name: purl
+          in: query
+          type: string
+          description: Package URL (purl) to filter issues
+    authentication:
+      type: bearer
+      token: '{{env.SNYK_CONTAINER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: snyk-container-issues-rest
+    port: 8080
+    description: REST adapter for Snyk Container API — Issues. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/orgs/{org-id}/issues
+      name: orgs-org-id-issues
+      description: REST surface for orgs-org_id-issues.
+      operations:
+      - method: GET
+        name: listcontainerissues
+        description: List Container Issues
+        call: snyk-container-issues.listcontainerissues
+        with:
+          org_id: rest.org_id
+          version: rest.version
+          scan_item.type: rest.scan_item.type
+          scan_item.id: rest.scan_item.id
+          severity: rest.severity
+          status: rest.status
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orgs/{org-id}/packages/issues
+      name: orgs-org-id-packages-issues
+      description: REST surface for orgs-org_id-packages-issues.
+      operations:
+      - method: GET
+        name: listpackageissues
+        description: List Package Issues
+        call: snyk-container-issues.listpackageissues
+        with:
+          org_id: rest.org_id
+          version: rest.version
+          purl: rest.purl
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: snyk-container-issues-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Snyk Container API — Issues. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-container-issues
+      description: List Container Issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snyk-container-issues.listcontainerissues
+      with:
+        org_id: tools.org_id
+        version: tools.version
+        scan_item.type: tools.scan_item.type
+        scan_item.id: tools.scan_item.id
+        severity: tools.severity
+        status: tools.status
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-package-issues
+      description: List Package Issues
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: snyk-container-issues.listpackageissues
+      with:
+        org_id: tools.org_id
+        version: tools.version
+        purl: tools.purl
+      outputParameters:
+      - type: object
+        mapping: $.
