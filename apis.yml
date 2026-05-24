@@ -90,6 +90,8 @@ common:
   url: examples/snyk-container-list-issues-example.json
 - type: Integrations
   url: https://snyk.io/integrations/
+- type: LLMsTxt
+  url: https://docs.snyk.io/llms.txt
 integrations:
 - name: View partner solutions
 maintainers:
