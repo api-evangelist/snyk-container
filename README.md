@@ -1,60 +1,81 @@
-# Snyk Container
+# Snyk Container (snyk-container)
 
 Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes workloads. It integrates into existing development workflows to provide continuous security monitoring throughout the container lifecycle, scanning Docker images, Kubernetes manifests, and Helm charts for known CVEs and misconfigurations.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/snyk-container/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/snyk-container/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+
+## Tags
+
+- Container Images
+- Containers
+- Kubernetes
+- Security
+- Vulnerability Management
+- DevSecOps
+- Open Source
+
+## Timestamps
+
+- **Created:** 2026-03-26
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Snyk Container
 
-Vulnerability scanning and remediation for container images and Kubernetes workloads.
+Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes workloads, integrating into existing development workflows to provide continuous security monitoring throughout the container lifecycle.
 
-- **Documentation:** https://docs.snyk.io/scan-using-snyk/snyk-container
-- **Getting Started:** https://docs.snyk.io/getting-started
-- **REST API:** https://apidocs.snyk.io/
-- **OpenAPI Spec:** [openapi/snyk-container-openapi.yml](openapi/snyk-container-openapi.yml)
+- **Human URL:** [https://snyk.io/product/container-vulnerability-management/](https://snyk.io/product/container-vulnerability-management/)
 
-**Key capabilities:**
-- List and manage container scanning projects (images, Kubernetes monitors, Helm releases)
-- Retrieve vulnerability issues with severity and status filtering
-- Generate SBOMs in CycloneDX 1.4 and SPDX 2.3 formats
-- Manage container registry scan targets
-- Look up package-level CVEs by package URL (purl)
+#### Tags
 
-## Artifacts
+- Container Images
+- Containers
+- Kubernetes
+- Security
+- Vulnerability Management
+- DevSecOps
 
-| Type | File |
-|------|------|
-| OpenAPI Spec | [openapi/snyk-container-openapi.yml](openapi/snyk-container-openapi.yml) |
-| JSON Schema (Project) | [json-schema/snyk-container-project-schema.json](json-schema/snyk-container-project-schema.json) |
-| JSON Schema (Issue) | [json-schema/snyk-container-issue-schema.json](json-schema/snyk-container-issue-schema.json) |
-| JSON Structure | [json-structure/snyk-container-project-structure.json](json-structure/snyk-container-project-structure.json) |
-| JSON-LD Context | [json-ld/snyk-container-context.jsonld](json-ld/snyk-container-context.jsonld) |
-| Spectral Rules | [rules/snyk-container-rules.yml](rules/snyk-container-rules.yml) |
-| Vocabulary | [vocabulary/snyk-container-vocabulary.yml](vocabulary/snyk-container-vocabulary.yml) |
-| Example: List Projects | [examples/snyk-container-list-projects-example.json](examples/snyk-container-list-projects-example.json) |
-| Example: List Issues | [examples/snyk-container-list-issues-example.json](examples/snyk-container-list-issues-example.json) |
+#### Properties
 
-## Capabilities
+- [Documentation](https://docs.snyk.io/scan-using-snyk/snyk-container)
+- [Getting Started](https://docs.snyk.io/getting-started)
+- [OpenAPI](openapi/snyk-container-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/snyk-container.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/snyk-container.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [J S O N  Schema](json-schema/snyk-container-project-schema.json)
+- [J S O N  Schema](json-schema/snyk-container-issue-schema.json)
+- [J S O N  Structure](json-structure/snyk-container-project-structure.json)
+- [J S O N- L D  Context](json-ld/snyk-container-context.jsonld)
+- [Spectral  Rules](rules/snyk-container-rules.yml)
+- [Capabilities](capabilities/container-security.yaml)
 
-### Workflows
+## Common Properties
 
-| Capability | File | Description |
-|-----------|------|-------------|
-| Container Security | [capabilities/container-security.yaml](capabilities/container-security.yaml) | Unified container security scanning, vulnerability tracking, SBOM generation, and registry management |
+- [Website](https://snyk.io/)
+- [Documentation](https://docs.snyk.io/scan-using-snyk/snyk-container)
+- [Getting Started](https://docs.snyk.io/getting-started)
+- [GitHub Organization](https://github.com/snyk)
+- [Blog](https://snyk.io/blog/)
+- [Pricing](https://snyk.io/plans/)
+- [Sign Up](https://app.snyk.io/signup)
+- [R E S T  A P I](https://apidocs.snyk.io/)
+- [A P I  Documentation](https://docs.snyk.io/snyk-api)
+- [Changelog](https://docs.snyk.io/snyk-api/changelog)
+- [SDK](https://github.com/snyk/snyk-sdk-java)
+- [C L I](https://github.com/snyk/cli)
+- [Kubernetes  Operator](https://github.com/snyk/kubernetes-monitor)
+- [Vocabulary](vocabulary/snyk-container-vocabulary.yml)
+- [Examples](examples/snyk-container-list-projects-example.json)
+- [Examples](examples/snyk-container-list-issues-example.json)
+- [Integrations](https://snyk.io/integrations/)
+- [L L Ms Txt](https://docs.snyk.io/llms.txt)
 
-### Shared Definitions
+## Maintainers
 
-| API | File |
-|-----|------|
-| Snyk Container | [capabilities/shared/snyk-container.yaml](capabilities/shared/snyk-container.yaml) |
-
-## Links
-
-- **Website:** https://snyk.io/
-- **Documentation:** https://docs.snyk.io/scan-using-snyk/snyk-container
-- **GitHub Org:** https://github.com/snyk
-- **CLI:** https://github.com/snyk/cli
-- **Kubernetes Monitor:** https://github.com/snyk/kubernetes-monitor
-- **Pricing:** https://snyk.io/plans/
-- **Blog:** https://snyk.io/blog/
-- **Sign Up:** https://app.snyk.io/signup
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
