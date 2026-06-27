@@ -5,7 +5,7 @@
       "source": "https://snyk.io/blog/feed/",
       "feed_url": "https://snyk.io/blog/feed/",
       "title": "",
-      "saved": 1,
+      "saved": 6,
       "method": "feed"
     },
     {
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 60,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 70,
+  "fetched": "2026-06-27T12:03:07Z"
 }
