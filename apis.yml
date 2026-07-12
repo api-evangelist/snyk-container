@@ -53,6 +53,14 @@ apis:
       - type: Capabilities
         url: capabilities/container-security.yaml
 common:
+  - type: TrustCenter
+    url: security/snyk-container-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/snyk-container-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/snyk-container-domain-security.yml
+  - type: Authentication
+    url: authentication/snyk-container-authentication.yml
   - type: Website
     url: https://snyk.io/
   - type: Documentation
