@@ -1,0 +1,234 @@
+openapi: 3.0.3
+info:
+  title: Snyk Container Container Projects Issues API
+  description: Snyk Container provides vulnerability scanning and remediation for container images, Kubernetes workloads, and Helm charts. The API enables organizations to integrate container security scanning into CI/CD pipelines, manage projects, retrieve vulnerability findings, and apply fixes programmatically.
+  version: 2024-10-15
+  contact:
+    name: Snyk Support
+    url: https://support.snyk.io/
+  license:
+    name: Proprietary
+    url: https://snyk.io/policies/terms-of-service/
+servers:
+- url: https://api.snyk.io/rest
+  description: Snyk US-01 (default)
+- url: https://api.us.snyk.io/rest
+  description: Snyk US-02
+- url: https://api.eu.snyk.io/rest
+  description: Snyk EU-01
+- url: https://api.au.snyk.io/rest
+  description: Snyk AU-01
+security:
+- BearerAuth: []
+tags:
+- name: Issues
+  description: Retrieve container vulnerability issues
+paths:
+  /orgs/{org_id}/issues:
+    get:
+      operationId: listContainerIssues
+      summary: List Container Issues
+      description: List vulnerability issues found in container scans for an organization, with filtering by severity, status, and type.
+      tags:
+      - Issues
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2024-10-15'
+      - name: scan_item.type
+        in: query
+        required: false
+        description: Filter issues by scan item type
+        schema:
+          type: string
+          enum:
+          - project
+      - name: scan_item.id
+        in: query
+        required: false
+        description: Filter issues by project ID
+        schema:
+          type: string
+          format: uuid
+      - name: severity
+        in: query
+        required: false
+        description: Filter by severity level
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - critical
+            - high
+            - medium
+            - low
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - open
+            - resolved
+            - ignored
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+          maximum: 100
+      responses:
+        '200':
+          description: List of container vulnerability issues
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IssuesResponse'
+  /orgs/{org_id}/packages/issues:
+    get:
+      operationId: listPackageIssues
+      summary: List Package Issues
+      description: List known vulnerabilities for packages found in container images.
+      tags:
+      - Issues
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: purl
+        in: query
+        required: false
+        description: Package URL (purl) to filter issues
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Package vulnerability issues
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/IssuesResponse'
+components:
+  schemas:
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique issue identifier
+        type:
+          type: string
+          enum:
+          - issue
+        attributes:
+          type: object
+          properties:
+            key:
+              type: string
+              description: Vulnerability identifier (e.g. CVE-2021-44228)
+            title:
+              type: string
+              description: Human-readable vulnerability title
+            type:
+              type: string
+              enum:
+              - package_vulnerability
+              - license
+              - cloud
+              - custom
+            severity:
+              type: string
+              enum:
+              - critical
+              - high
+              - medium
+              - low
+            status:
+              type: string
+              enum:
+              - open
+              - resolved
+              - ignored
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+            ignored:
+              type: boolean
+            resolved:
+              type: boolean
+            coordinates:
+              type: array
+              items:
+                type: object
+                properties:
+                  remedies:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                          - indeterminate
+                          - manual
+                          - automatic
+                        description:
+                          type: string
+                        details:
+                          type: object
+                          properties:
+                            upgrade_package:
+                              type: string
+    IssuesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+    PaginationLinks:
+      type: object
+      properties:
+        prev:
+          type: string
+          description: URL for previous page
+        next:
+          type: string
+          description: URL for next page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Snyk API token obtained from your Snyk account settings

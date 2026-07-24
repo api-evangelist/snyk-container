@@ -1,0 +1,240 @@
+openapi: 3.0.3
+info:
+  title: Snyk Container Container Projects Targets API
+  description: Snyk Container provides vulnerability scanning and remediation for container images, Kubernetes workloads, and Helm charts. The API enables organizations to integrate container security scanning into CI/CD pipelines, manage projects, retrieve vulnerability findings, and apply fixes programmatically.
+  version: 2024-10-15
+  contact:
+    name: Snyk Support
+    url: https://support.snyk.io/
+  license:
+    name: Proprietary
+    url: https://snyk.io/policies/terms-of-service/
+servers:
+- url: https://api.snyk.io/rest
+  description: Snyk US-01 (default)
+- url: https://api.us.snyk.io/rest
+  description: Snyk US-02
+- url: https://api.eu.snyk.io/rest
+  description: Snyk EU-01
+- url: https://api.au.snyk.io/rest
+  description: Snyk AU-01
+security:
+- BearerAuth: []
+tags:
+- name: Targets
+  description: Manage scan targets (images, registries)
+paths:
+  /orgs/{org_id}/targets:
+    get:
+      operationId: listTargets
+      summary: List Targets
+      description: List all targets (container registries, image sources) for an organization.
+      tags:
+      - Targets
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2024-10-15'
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: List of targets
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TargetsResponse'
+    post:
+      operationId: createTarget
+      summary: Create Target
+      description: Create a new container registry target for scanning.
+      tags:
+      - Targets
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/TargetCreateRequest'
+      responses:
+        '201':
+          description: Target created
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TargetResponse'
+        '400':
+          description: Invalid request
+  /orgs/{org_id}/targets/{target_id}:
+    get:
+      operationId: getTarget
+      summary: Get Target
+      description: Retrieve details of a specific container scan target.
+      tags:
+      - Targets
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: target_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Target details
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/TargetResponse'
+        '404':
+          description: Target not found
+    delete:
+      operationId: deleteTarget
+      summary: Delete Target
+      description: Remove a container scan target.
+      tags:
+      - Targets
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: target_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Target deleted
+components:
+  schemas:
+    TargetsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Target'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+    TargetResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Target'
+    PaginationLinks:
+      type: object
+      properties:
+        prev:
+          type: string
+          description: URL for previous page
+        next:
+          type: string
+          description: URL for next page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
+    Target:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - target
+        attributes:
+          type: object
+          properties:
+            display_name:
+              type: string
+              description: Human-readable target name
+            url:
+              type: string
+              description: Container registry URL
+            created_at:
+              type: string
+              format: date-time
+            is_private:
+              type: boolean
+    TargetCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          properties:
+            type:
+              type: string
+              enum:
+              - target
+            attributes:
+              type: object
+              required:
+              - display_name
+              - url
+              properties:
+                display_name:
+                  type: string
+                  description: Name for this target
+                url:
+                  type: string
+                  description: Container registry URL
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Snyk API token obtained from your Snyk account settings

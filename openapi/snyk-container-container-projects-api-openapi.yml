@@ -1,0 +1,286 @@
+openapi: 3.0.3
+info:
+  title: Snyk Container Container Projects API
+  description: Snyk Container provides vulnerability scanning and remediation for container images, Kubernetes workloads, and Helm charts. The API enables organizations to integrate container security scanning into CI/CD pipelines, manage projects, retrieve vulnerability findings, and apply fixes programmatically.
+  version: 2024-10-15
+  contact:
+    name: Snyk Support
+    url: https://support.snyk.io/
+  license:
+    name: Proprietary
+    url: https://snyk.io/policies/terms-of-service/
+servers:
+- url: https://api.snyk.io/rest
+  description: Snyk US-01 (default)
+- url: https://api.us.snyk.io/rest
+  description: Snyk US-02
+- url: https://api.eu.snyk.io/rest
+  description: Snyk EU-01
+- url: https://api.au.snyk.io/rest
+  description: Snyk AU-01
+security:
+- BearerAuth: []
+tags:
+- name: Container Projects
+  description: Manage Snyk Container scanning projects
+paths:
+  /orgs/{org_id}/projects:
+    get:
+      operationId: listContainerProjects
+      summary: List Container Projects
+      description: List all container scanning projects within an organization, optionally filtered by type.
+      tags:
+      - Container Projects
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        description: The unique identifier of the Snyk organization
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        description: API version date string (e.g. 2024-10-15)
+        schema:
+          type: string
+          default: '2024-10-15'
+      - name: types
+        in: query
+        required: false
+        description: Filter by project type (e.g. dockerfileFromScm, containerRegistryImage)
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - dockerfileFromScm
+            - containerRegistryImage
+            - kubernetesMonitor
+            - helmRelease
+      - name: limit
+        in: query
+        required: false
+        description: Number of results per page (max 100)
+        schema:
+          type: integer
+          default: 10
+          maximum: 100
+      - name: starting_after
+        in: query
+        required: false
+        description: Cursor for pagination — items after this cursor
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of container projects
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ProjectsResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /orgs/{org_id}/projects/{project_id}:
+    get:
+      operationId: getContainerProject
+      summary: Get Container Project
+      description: Retrieve details of a specific container scanning project.
+      tags:
+      - Container Projects
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+          default: '2024-10-15'
+      responses:
+        '200':
+          description: Container project details
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ProjectResponse'
+        '404':
+          description: Project not found
+    delete:
+      operationId: deleteContainerProject
+      summary: Delete Container Project
+      description: Delete a container scanning project.
+      tags:
+      - Container Projects
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Project deleted
+        '404':
+          description: Project not found
+  /orgs/{org_id}/projects/{project_id}/sbom:
+    get:
+      operationId: getProjectSbom
+      summary: Get Project SBOM
+      description: Generate and retrieve an SBOM (Software Bill of Materials) for a container project.
+      tags:
+      - Container Projects
+      parameters:
+      - name: org_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: project_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: SBOM format
+        schema:
+          type: string
+          enum:
+          - cyclonedx1.4+json
+          - cyclonedx1.4+xml
+          - spdx2.3+json
+      responses:
+        '200':
+          description: SBOM document
+          content:
+            application/json:
+              schema:
+                type: object
+            application/xml:
+              schema:
+                type: object
+components:
+  schemas:
+    ProjectResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Project'
+    ProjectsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique project identifier
+        type:
+          type: string
+          enum:
+          - project
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Project name (usually image:tag)
+            type:
+              type: string
+              enum:
+              - containerRegistryImage
+              - dockerfileFromScm
+              - kubernetesMonitor
+              - helmRelease
+            status:
+              type: string
+              enum:
+              - active
+              - inactive
+            created:
+              type: string
+              format: date-time
+            read_only:
+              type: boolean
+            tags:
+              type: array
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  value:
+                    type: string
+            settings:
+              type: object
+              properties:
+                recurring_tests:
+                  type: object
+                  properties:
+                    frequency:
+                      type: string
+                      enum:
+                      - daily
+                      - weekly
+                      - never
+    PaginationLinks:
+      type: object
+      properties:
+        prev:
+          type: string
+          description: URL for previous page
+        next:
+          type: string
+          description: URL for next page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Snyk API token obtained from your Snyk account settings
