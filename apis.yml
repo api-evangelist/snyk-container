@@ -5,7 +5,20 @@ description: >-
   integrates into existing development workflows to provide continuous security monitoring throughout the container
   lifecycle, scanning Docker images, Kubernetes manifests, and Helm charts for known CVEs and misconfigurations.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/snyk-container.png
 tags:
   - Container Images
   - Containers
@@ -19,40 +32,84 @@ created: '2026-03-26'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: snyk-container:snyk-container
-    name: Snyk Container
-    description: >-
-      Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes workloads,
-      integrating into existing development workflows to provide continuous security monitoring throughout the container
-      lifecycle.
-    humanURL: https://snyk.io/product/container-vulnerability-management/
-    tags:
-      - Container Images
-      - Containers
-      - Kubernetes
-      - Security
-      - Vulnerability Management
-      - DevSecOps
-    properties:
-      - type: Documentation
-        url: https://docs.snyk.io/scan-using-snyk/snyk-container
-      - type: GettingStarted
-        url: https://docs.snyk.io/getting-started
-      - type: OpenAPI
-        url: openapi/snyk-container-openapi.yml
-      - type: JSONSchema
-        url: json-schema/snyk-container-project-schema.json
-      - type: JSONSchema
-        url: json-schema/snyk-container-issue-schema.json
-      - type: JSONStructure
-        url: json-structure/snyk-container-project-structure.json
-      - type: JSONLDContext
-        url: json-ld/snyk-container-context.jsonld
-      - type: SpectralRules
-        url: rules/snyk-container-rules.yml
-      - type: Capabilities
-        url: capabilities/container-security.yaml
+- aid: snyk-container:snyk-container-container-projects-api
+  name: Snyk Container Container Projects API
+  description: Manage Snyk Container scanning projects
+  humanURL: https://snyk.io/product/container-vulnerability-management/
+  tags:
+  - Container Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/snyk-container-container-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.snyk.io/scan-using-snyk/snyk-container
+  - type: GettingStarted
+    url: https://docs.snyk.io/getting-started
+  - type: JSONSchema
+    url: json-schema/snyk-container-project-schema.json
+  - type: JSONSchema
+    url: json-schema/snyk-container-issue-schema.json
+  - type: JSONStructure
+    url: json-structure/snyk-container-project-structure.json
+  - type: JSONLDContext
+    url: json-ld/snyk-container-context.jsonld
+  - type: SpectralRules
+    url: rules/snyk-container-rules.yml
+  - type: Capabilities
+    url: capabilities/container-security.yaml
+- aid: snyk-container:snyk-container-issues-api
+  name: Snyk Container Issues API
+  description: Retrieve container vulnerability issues
+  humanURL: https://snyk.io/product/container-vulnerability-management/
+  tags:
+  - Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/snyk-container-issues-api-openapi.yml
+  - type: Documentation
+    url: https://docs.snyk.io/scan-using-snyk/snyk-container
+  - type: GettingStarted
+    url: https://docs.snyk.io/getting-started
+  - type: JSONSchema
+    url: json-schema/snyk-container-project-schema.json
+  - type: JSONSchema
+    url: json-schema/snyk-container-issue-schema.json
+  - type: JSONStructure
+    url: json-structure/snyk-container-project-structure.json
+  - type: JSONLDContext
+    url: json-ld/snyk-container-context.jsonld
+  - type: SpectralRules
+    url: rules/snyk-container-rules.yml
+  - type: Capabilities
+    url: capabilities/container-security.yaml
+- aid: snyk-container:snyk-container-targets-api
+  name: Snyk Container Targets API
+  description: Manage scan targets (images, registries)
+  humanURL: https://snyk.io/product/container-vulnerability-management/
+  tags:
+  - Targets
+  properties:
+  - type: OpenAPI
+    url: openapi/snyk-container-targets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.snyk.io/scan-using-snyk/snyk-container
+  - type: GettingStarted
+    url: https://docs.snyk.io/getting-started
+  - type: JSONSchema
+    url: json-schema/snyk-container-project-schema.json
+  - type: JSONSchema
+    url: json-schema/snyk-container-issue-schema.json
+  - type: JSONStructure
+    url: json-structure/snyk-container-project-structure.json
+  - type: JSONLDContext
+    url: json-ld/snyk-container-context.jsonld
+  - type: SpectralRules
+    url: rules/snyk-container-rules.yml
+  - type: Capabilities
+    url: capabilities/container-security.yaml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/snyk-container/overview
   - type: AgenticAccess
     url: agentic-access/snyk-container-agentic-access.yml
   - type: TrustCenter
