@@ -1,0 +1,350 @@
+{
+  "info": {
+    "_postman_id": "97a4959a-6362-4246-a8ce-6c46806978b9",
+    "name": "Snyk Container Container Projects Issues API",
+    "description": "Snyk Container provides vulnerability scanning and remediation for container images, Kubernetes workloads, and Helm charts. The API enables organizations to integrate container security scanning into CI/CD pipelines, manage projects, retrieve vulnerability findings, and apply fixes programmatically.\n\nContact Support:\n Name: Snyk Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:19.000Z",
+    "updatedAt": "2026-07-28T02:57:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-97a4959a-6362-4246-a8ce-6c46806978b9"
+  },
+  "item": [
+    {
+      "name": "orgs",
+      "item": [
+        {
+          "name": "{org_id}",
+          "item": [
+            {
+              "name": "issues",
+              "item": [
+                {
+                  "name": "List Container Issues",
+                  "id": "63260e14-e227-4c23-b5fa-ebee74bcc946",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orgs/:org_id/issues?version=2024-10-15&scan_item.type=project&scan_item.id=<uuid>&severity=high&severity=critical&status=ignored&status=open&limit=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orgs",
+                        ":org_id",
+                        "issues"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "version",
+                          "value": "2024-10-15"
+                        },
+                        {
+                          "description": "Filter issues by scan item type",
+                          "key": "scan_item.type",
+                          "value": "project"
+                        },
+                        {
+                          "description": "Filter issues by project ID",
+                          "key": "scan_item.id",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Filter by severity level",
+                          "key": "severity",
+                          "value": "high"
+                        },
+                        {
+                          "description": "Filter by severity level",
+                          "key": "severity",
+                          "value": "critical"
+                        },
+                        {
+                          "key": "status",
+                          "value": "ignored"
+                        },
+                        {
+                          "key": "status",
+                          "value": "open"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "beae5f84-e585-4894-8571-912e57237b2e",
+                          "key": "org_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "List vulnerability issues found in container scans for an organization, with filtering by severity, status, and type."
+                  },
+                  "response": [
+                    {
+                      "id": "d1a422c4-8a3e-41a6-a4f2-8732a41a6f76",
+                      "name": "List of container vulnerability issues",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orgs/:org_id/issues?version=2024-10-15&scan_item.type=project&scan_item.id=<uuid>&severity=critical&status=open&limit=10",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orgs",
+                            ":org_id",
+                            "issues"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "version",
+                              "value": "2024-10-15"
+                            },
+                            {
+                              "description": "Filter issues by scan item type",
+                              "key": "scan_item.type",
+                              "value": "project"
+                            },
+                            {
+                              "description": "Filter issues by project ID",
+                              "key": "scan_item.id",
+                              "value": "<uuid>"
+                            },
+                            {
+                              "description": "Filter by severity level",
+                              "key": "severity",
+                              "value": "critical"
+                            },
+                            {
+                              "key": "status",
+                              "value": "open"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "10"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "org_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"issue\",\n      \"attributes\": {\n        \"key\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"package_vulnerability\",\n        \"severity\": \"low\",\n        \"status\": \"open\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"ignored\": \"<boolean>\",\n        \"resolved\": \"<boolean>\",\n        \"coordinates\": [\n          {\n            \"remedies\": [\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              },\n              {\n                \"type\": \"automatic\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              }\n            ]\n          },\n          {\n            \"remedies\": [\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              },\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              }\n            ]\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"issue\",\n      \"attributes\": {\n        \"key\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"cloud\",\n        \"severity\": \"high\",\n        \"status\": \"ignored\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"ignored\": \"<boolean>\",\n        \"resolved\": \"<boolean>\",\n        \"coordinates\": [\n          {\n            \"remedies\": [\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              },\n              {\n                \"type\": \"automatic\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              }\n            ]\n          },\n          {\n            \"remedies\": [\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              },\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              }\n            ]\n          }\n        ]\n      }\n    }\n  ],\n  \"links\": {\n    \"prev\": \"<string>\",\n    \"next\": \"<string>\",\n    \"first\": \"<string>\",\n    \"last\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:20.000Z",
+                      "updatedAt": "2026-07-28T02:57:20.000Z",
+                      "uid": "35240-d1a422c4-8a3e-41a6-a4f2-8732a41a6f76"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:57:20.000Z",
+                  "updatedAt": "2026-07-28T02:57:20.000Z",
+                  "uid": "35240-63260e14-e227-4c23-b5fa-ebee74bcc946"
+                }
+              ],
+              "id": "71b5751e-caa6-4252-887a-3e3ac2cc337e",
+              "createdAt": "2026-07-28T02:57:20.000Z",
+              "updatedAt": "2026-07-28T02:57:20.000Z",
+              "uid": "35240-71b5751e-caa6-4252-887a-3e3ac2cc337e"
+            },
+            {
+              "name": "packages",
+              "item": [
+                {
+                  "name": "issues",
+                  "item": [
+                    {
+                      "name": "List Package Issues",
+                      "id": "8ee9e26b-c63e-4702-b8e5-003c890f0c44",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orgs/:org_id/packages/issues?version=<string>&purl=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orgs",
+                            ":org_id",
+                            "packages",
+                            "issues"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "version",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Package URL (purl) to filter issues",
+                              "key": "purl",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "f673c418-5bf2-4fc9-8adf-96f03010871b",
+                              "key": "org_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "List known vulnerabilities for packages found in container images."
+                      },
+                      "response": [
+                        {
+                          "id": "dee9aeaa-806d-4124-be13-076605c43b13",
+                          "name": "Package vulnerability issues",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orgs/:org_id/packages/issues?version=<string>&purl=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orgs",
+                                ":org_id",
+                                "packages",
+                                "issues"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "version",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Package URL (purl) to filter issues",
+                                  "key": "purl",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "org_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"issue\",\n      \"attributes\": {\n        \"key\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"package_vulnerability\",\n        \"severity\": \"low\",\n        \"status\": \"open\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"ignored\": \"<boolean>\",\n        \"resolved\": \"<boolean>\",\n        \"coordinates\": [\n          {\n            \"remedies\": [\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              },\n              {\n                \"type\": \"automatic\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              }\n            ]\n          },\n          {\n            \"remedies\": [\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              },\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              }\n            ]\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"issue\",\n      \"attributes\": {\n        \"key\": \"<string>\",\n        \"title\": \"<string>\",\n        \"type\": \"cloud\",\n        \"severity\": \"high\",\n        \"status\": \"ignored\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"ignored\": \"<boolean>\",\n        \"resolved\": \"<boolean>\",\n        \"coordinates\": [\n          {\n            \"remedies\": [\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              },\n              {\n                \"type\": \"automatic\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              }\n            ]\n          },\n          {\n            \"remedies\": [\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              },\n              {\n                \"type\": \"manual\",\n                \"description\": \"<string>\",\n                \"details\": {\n                  \"upgrade_package\": \"<string>\"\n                }\n              }\n            ]\n          }\n        ]\n      }\n    }\n  ],\n  \"links\": {\n    \"prev\": \"<string>\",\n    \"next\": \"<string>\",\n    \"first\": \"<string>\",\n    \"last\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:57:20.000Z",
+                          "updatedAt": "2026-07-28T02:57:20.000Z",
+                          "uid": "35240-dee9aeaa-806d-4124-be13-076605c43b13"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:57:20.000Z",
+                      "updatedAt": "2026-07-28T02:57:20.000Z",
+                      "uid": "35240-8ee9e26b-c63e-4702-b8e5-003c890f0c44"
+                    }
+                  ],
+                  "id": "8201e903-0199-41a3-b590-a0dd0dbb808f",
+                  "createdAt": "2026-07-28T02:57:20.000Z",
+                  "updatedAt": "2026-07-28T02:57:20.000Z",
+                  "uid": "35240-8201e903-0199-41a3-b590-a0dd0dbb808f"
+                }
+              ],
+              "id": "1e7a0fa3-210f-4c2c-ab54-703dafb7ed93",
+              "createdAt": "2026-07-28T02:57:20.000Z",
+              "updatedAt": "2026-07-28T02:57:20.000Z",
+              "uid": "35240-1e7a0fa3-210f-4c2c-ab54-703dafb7ed93"
+            }
+          ],
+          "id": "733d2065-3439-4d08-a4cb-fe352357699f",
+          "createdAt": "2026-07-28T02:57:20.000Z",
+          "updatedAt": "2026-07-28T02:57:20.000Z",
+          "uid": "35240-733d2065-3439-4d08-a4cb-fe352357699f"
+        }
+      ],
+      "id": "ada99870-16e6-484c-a890-58fa821c40e5",
+      "createdAt": "2026-07-28T02:57:20.000Z",
+      "updatedAt": "2026-07-28T02:57:20.000Z",
+      "uid": "35240-ada99870-16e6-484c-a890-58fa821c40e5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.snyk.io/rest"
+    }
+  ]
+}

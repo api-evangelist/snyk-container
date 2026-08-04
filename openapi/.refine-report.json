@@ -1,0 +1,18 @@
+{
+  "provider": "snyk-container",
+  "sources": [
+    "snyk-container-container-projects-api-openapi.yml",
+    "snyk-container-issues-api-openapi.yml",
+    "snyk-container-targets-api-openapi.yml"
+  ],
+  "outputs": [
+    "snyk-container-container-projects-api-openapi.yml",
+    "snyk-container-issues-api-openapi.yml",
+    "snyk-container-targets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,638 @@
+{
+  "info": {
+    "_postman_id": "c8bc22e2-0c3b-4c64-a608-e7b8aa458611",
+    "name": "Snyk Container Container Projects Targets API",
+    "description": "Snyk Container provides vulnerability scanning and remediation for container images, Kubernetes workloads, and Helm charts. The API enables organizations to integrate container security scanning into CI/CD pipelines, manage projects, retrieve vulnerability findings, and apply fixes programmatically.\n\nContact Support:\n Name: Snyk Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:20.000Z",
+    "updatedAt": "2026-07-28T02:57:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c8bc22e2-0c3b-4c64-a608-e7b8aa458611"
+  },
+  "item": [
+    {
+      "name": "orgs",
+      "item": [
+        {
+          "name": "{org_id}",
+          "item": [
+            {
+              "name": "targets",
+              "item": [
+                {
+                  "name": "{target_id}",
+                  "item": [
+                    {
+                      "name": "Get Target",
+                      "id": "bbac39e7-a743-4e54-9188-7bbe99fb4110",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orgs/:org_id/targets/:target_id?version=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orgs",
+                            ":org_id",
+                            "targets",
+                            ":target_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "version",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "95100ba3-38cb-4aa6-862e-104b89bcc6d2",
+                              "key": "org_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "a6dd2aab-ad5c-4969-88c1-90bd8656aa93",
+                              "key": "target_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve details of a specific container scan target."
+                      },
+                      "response": [
+                        {
+                          "id": "a6af834c-084a-4bc0-b8a3-7e8ef8d66dde",
+                          "name": "Target details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orgs/:org_id/targets/:target_id?version=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orgs",
+                                ":org_id",
+                                "targets",
+                                ":target_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "version",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "org_id"
+                                },
+                                {
+                                  "key": "target_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<uuid>\",\n    \"type\": \"target\",\n    \"attributes\": {\n      \"display_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"is_private\": \"<boolean>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T02:57:21.000Z",
+                          "updatedAt": "2026-07-28T02:57:21.000Z",
+                          "uid": "35240-a6af834c-084a-4bc0-b8a3-7e8ef8d66dde"
+                        },
+                        {
+                          "id": "b71ea689-8aca-49ff-a1dc-60264b7465eb",
+                          "name": "Target not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orgs/:org_id/targets/:target_id?version=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orgs",
+                                ":org_id",
+                                "targets",
+                                ":target_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "version",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "org_id"
+                                },
+                                {
+                                  "key": "target_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:57:21.000Z",
+                          "updatedAt": "2026-07-28T02:57:21.000Z",
+                          "uid": "35240-b71ea689-8aca-49ff-a1dc-60264b7465eb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:57:21.000Z",
+                      "updatedAt": "2026-07-28T02:57:21.000Z",
+                      "uid": "35240-bbac39e7-a743-4e54-9188-7bbe99fb4110"
+                    },
+                    {
+                      "name": "Delete Target",
+                      "id": "a09186f4-412e-4e6d-933e-069a4073ec14",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/orgs/:org_id/targets/:target_id?version=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orgs",
+                            ":org_id",
+                            "targets",
+                            ":target_id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "version",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "be08e752-ba57-4b8d-b1e0-70d68fd20bd7",
+                              "key": "org_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "76838fd9-1b5c-4900-a4c4-d83da18cff88",
+                              "key": "target_id",
+                              "value": "<uuid>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Remove a container scan target."
+                      },
+                      "response": [
+                        {
+                          "id": "15f6873b-c891-4ad1-a54e-bdcb66b0cb14",
+                          "name": "Target deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orgs/:org_id/targets/:target_id?version=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orgs",
+                                ":org_id",
+                                "targets",
+                                ":target_id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "version",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "org_id"
+                                },
+                                {
+                                  "key": "target_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:57:21.000Z",
+                          "updatedAt": "2026-07-28T02:57:21.000Z",
+                          "uid": "35240-15f6873b-c891-4ad1-a54e-bdcb66b0cb14"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:57:21.000Z",
+                      "updatedAt": "2026-07-28T02:57:21.000Z",
+                      "uid": "35240-a09186f4-412e-4e6d-933e-069a4073ec14"
+                    }
+                  ],
+                  "id": "b5fab316-d064-402a-bf20-d5edefa46e2b",
+                  "createdAt": "2026-07-28T02:57:21.000Z",
+                  "updatedAt": "2026-07-28T02:57:21.000Z",
+                  "uid": "35240-b5fab316-d064-402a-bf20-d5edefa46e2b"
+                },
+                {
+                  "name": "List Targets",
+                  "id": "146fbd14-b185-4b8d-9891-6fbd72b5f1ab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orgs/:org_id/targets?version=2024-10-15&limit=10",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orgs",
+                        ":org_id",
+                        "targets"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "version",
+                          "value": "2024-10-15"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "dfb1917c-ee04-40db-aafd-e8a19a7086a9",
+                          "key": "org_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "List all targets (container registries, image sources) for an organization."
+                  },
+                  "response": [
+                    {
+                      "id": "99c81e57-c89a-47dd-ac65-c192dec5466a",
+                      "name": "List of targets",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orgs/:org_id/targets?version=2024-10-15&limit=10",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orgs",
+                            ":org_id",
+                            "targets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "version",
+                              "value": "2024-10-15"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "10"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "org_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<uuid>\",\n      \"type\": \"target\",\n      \"attributes\": {\n        \"display_name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"is_private\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"type\": \"target\",\n      \"attributes\": {\n        \"display_name\": \"<string>\",\n        \"url\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"is_private\": \"<boolean>\"\n      }\n    }\n  ],\n  \"links\": {\n    \"prev\": \"<string>\",\n    \"next\": \"<string>\",\n    \"first\": \"<string>\",\n    \"last\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:21.000Z",
+                      "updatedAt": "2026-07-28T02:57:21.000Z",
+                      "uid": "35240-99c81e57-c89a-47dd-ac65-c192dec5466a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:57:21.000Z",
+                  "updatedAt": "2026-07-28T02:57:21.000Z",
+                  "uid": "35240-146fbd14-b185-4b8d-9891-6fbd72b5f1ab"
+                },
+                {
+                  "name": "Create Target",
+                  "id": "aa6950bd-c0c2-4d3a-82be-3beeffd0d889",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/vnd.api+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {\n    \"type\": \"target\",\n    \"attributes\": {\n      \"display_name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orgs/:org_id/targets?version=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orgs",
+                        ":org_id",
+                        "targets"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "version",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "54fd2590-48ac-47be-a776-3bc193b9d81c",
+                          "key": "org_id",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Create a new container registry target for scanning."
+                  },
+                  "response": [
+                    {
+                      "id": "7bd25019-1710-4777-be85-a7391889dac0",
+                      "name": "Target created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"target\",\n    \"attributes\": {\n      \"display_name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orgs/:org_id/targets?version=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orgs",
+                            ":org_id",
+                            "targets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "version",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "org_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.api+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<uuid>\",\n    \"type\": \"target\",\n    \"attributes\": {\n      \"display_name\": \"<string>\",\n      \"url\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"is_private\": \"<boolean>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:21.000Z",
+                      "updatedAt": "2026-07-28T02:57:21.000Z",
+                      "uid": "35240-7bd25019-1710-4777-be85-a7391889dac0"
+                    },
+                    {
+                      "id": "946a083d-4072-4345-9cc6-ad5c945ae2c0",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"target\",\n    \"attributes\": {\n      \"display_name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orgs/:org_id/targets?version=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orgs",
+                            ":org_id",
+                            "targets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) ",
+                              "key": "version",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "org_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:57:21.000Z",
+                      "updatedAt": "2026-07-28T02:57:21.000Z",
+                      "uid": "35240-946a083d-4072-4345-9cc6-ad5c945ae2c0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:57:21.000Z",
+                  "updatedAt": "2026-07-28T02:57:21.000Z",
+                  "uid": "35240-aa6950bd-c0c2-4d3a-82be-3beeffd0d889"
+                }
+              ],
+              "id": "755143c4-0bc4-4ca5-9385-0a60bdd3c712",
+              "createdAt": "2026-07-28T02:57:21.000Z",
+              "updatedAt": "2026-07-28T02:57:21.000Z",
+              "uid": "35240-755143c4-0bc4-4ca5-9385-0a60bdd3c712"
+            }
+          ],
+          "id": "e6e534bf-3a9d-4f48-844a-5ccc1f4935fb",
+          "createdAt": "2026-07-28T02:57:21.000Z",
+          "updatedAt": "2026-07-28T02:57:21.000Z",
+          "uid": "35240-e6e534bf-3a9d-4f48-844a-5ccc1f4935fb"
+        }
+      ],
+      "id": "952d2981-d1e5-421d-857d-88a4b3c9f879",
+      "createdAt": "2026-07-28T02:57:21.000Z",
+      "updatedAt": "2026-07-28T02:57:21.000Z",
+      "uid": "35240-952d2981-d1e5-421d-857d-88a4b3c9f879"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.snyk.io/rest"
+    }
+  ]
+}
