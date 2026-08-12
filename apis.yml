@@ -55,8 +55,6 @@ apis:
     url: json-ld/snyk-container-context.jsonld
   - type: SpectralRules
     url: rules/snyk-container-rules.yml
-  - type: Capabilities
-    url: capabilities/container-security.yaml
 - aid: snyk-container:snyk-container-issues-api
   name: Snyk Container Issues API
   description: Retrieve container vulnerability issues
@@ -80,8 +78,6 @@ apis:
     url: json-ld/snyk-container-context.jsonld
   - type: SpectralRules
     url: rules/snyk-container-rules.yml
-  - type: Capabilities
-    url: capabilities/container-security.yaml
 - aid: snyk-container:snyk-container-targets-api
   name: Snyk Container Targets API
   description: Manage scan targets (images, registries)
@@ -105,8 +101,6 @@ apis:
     url: json-ld/snyk-container-context.jsonld
   - type: SpectralRules
     url: rules/snyk-container-rules.yml
-  - type: Capabilities
-    url: capabilities/container-security.yaml
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/snyk-container/overview
