@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snyk Container Container Projects API",
+    "version": "2024-10-15"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Container Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Container Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.snyk.io/rest/orgs/:org_id/projects",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Snyk organization"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version date string (e.g. 2024-10-15)"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project type (e.g. dockerfileFromScm, containerRegistryImage)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page (max 100)"
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination — items after this cursor"
+              }
+            ]
+          },
+          "docs": "List all container scanning projects within an organization, optionally filtered by type."
+        },
+        {
+          "info": {
+            "name": "Get Container Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.snyk.io/rest/orgs/:org_id/projects/:project_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific container scanning project."
+        },
+        {
+          "info": {
+            "name": "Delete Container Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.snyk.io/rest/orgs/:org_id/projects/:project_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete a container scanning project."
+        },
+        {
+          "info": {
+            "name": "Get Project SBOM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.snyk.io/rest/orgs/:org_id/projects/:project_id/sbom",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "SBOM format"
+              }
+            ]
+          },
+          "docs": "Generate and retrieve an SBOM (Software Bill of Materials) for a container project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

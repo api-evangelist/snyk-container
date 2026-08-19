@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Snyk Container Container Projects Issues API",
+    "version": "2024-10-15"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Container Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.snyk.io/rest/orgs/:org_id/issues",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scan_item.type",
+                "value": "",
+                "type": "query",
+                "description": "Filter issues by scan item type"
+              },
+              {
+                "name": "scan_item.id",
+                "value": "",
+                "type": "query",
+                "description": "Filter issues by project ID"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by severity level"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List vulnerability issues found in container scans for an organization, with filtering by severity, status, and type."
+        },
+        {
+          "info": {
+            "name": "List Package Issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.snyk.io/rest/orgs/:org_id/packages/issues",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "purl",
+                "value": "",
+                "type": "query",
+                "description": "Package URL (purl) to filter issues"
+              }
+            ]
+          },
+          "docs": "List known vulnerabilities for packages found in container images."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
