@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Snyk Container Container Projects API
   description: Snyk Container provides vulnerability scanning and remediation for container images, Kubernetes workloads, and Helm charts. The API enables organizations to integrate container security scanning into CI/CD pipelines, manage projects, retrieve vulnerability findings, and apply fixes programmatically.
@@ -195,11 +195,6 @@ paths:
                 type: object
 components:
   schemas:
-    ProjectResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Project'
     ProjectsResponse:
       type: object
       properties:
@@ -209,6 +204,11 @@ components:
             $ref: '#/components/schemas/Project'
         links:
           $ref: '#/components/schemas/PaginationLinks'
+    ProjectResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Project'
     Project:
       type: object
       properties:

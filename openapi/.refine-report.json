@@ -13,6 +13,11 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "snyk-container-container-projects-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "snyk-container-issues-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "snyk-container-targets-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
