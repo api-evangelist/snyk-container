@@ -1,9 +1,9 @@
 aid: snyk-container
 name: Snyk Container
-description: >-
-  Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes workloads. It
-  integrates into existing development workflows to provide continuous security monitoring throughout the container
-  lifecycle, scanning Docker images, Kubernetes manifests, and Helm charts for known CVEs and misconfigurations.
+description: Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes
+  workloads. It integrates into existing development workflows to provide continuous security monitoring
+  throughout the container lifecycle, scanning Docker images, Kubernetes manifests, and Helm charts for
+  known CVEs and misconfigurations.
 type: Index
 deliveryModel:
   model: saas
@@ -33,28 +33,28 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/snyk-container.png
 tags:
-  - Container Images
-  - Containers
-  - Kubernetes
-  - Security
-  - Vulnerability Management
-  - DevSecOps
-  - Open-Source
+- Container Images
+- Containers
+- Kubernetes
+- Security
+- Vulnerability Management
+- DevSecOps
+- Open-Source
 tags_raw:
-  - Container Images
-  - Containers
-  - Kubernetes
-  - Security
-  - Vulnerability Management
-  - DevSecOps
-  - Open Source
+- Container Images
+- Containers
+- Kubernetes
+- Security
+- Vulnerability Management
+- DevSecOps
+- Open Source
 url: https://raw.githubusercontent.com/api-evangelist/snyk-container/refs/heads/main/apis.yml
 created: '2026-03-26'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: snyk-container:snyk-container-container-projects-api
-  name: Snyk Container Container Projects API
+  name: Snyk Container Projects API
   description: Manage Snyk Container scanning projects
   humanURL: https://snyk.io/product/container-vulnerability-management/
   tags:
@@ -123,58 +123,58 @@ apis:
   - type: SpectralRules
     url: rules/snyk-container-rules.yml
 common:
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/snyk-container/overview
-  - type: AgenticAccess
-    url: agentic-access/snyk-container-agentic-access.yml
-  - type: TrustCenter
-    url: security/snyk-container-trust-center.yml
-  - type: VulnerabilityDisclosure
-    url: security/snyk-container-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/snyk-container-domain-security.yml
-  - type: Authentication
-    url: authentication/snyk-container-authentication.yml
-  - type: Website
-    url: https://snyk.io/
-  - type: Documentation
-    url: https://docs.snyk.io/scan-using-snyk/snyk-container
-  - type: GettingStarted
-    url: https://docs.snyk.io/getting-started
-  - type: GitHubOrganization
-    url: https://github.com/snyk
-  - type: Blog
-    url: https://snyk.io/blog/
-  - type: Pricing
-    url: https://snyk.io/plans/
-  - type: Signup
-    url: https://app.snyk.io/signup
-  - type: REST API
-    url: https://apidocs.snyk.io/
-  - type: API Documentation
-    url: https://docs.snyk.io/snyk-api
-  - type: ChangeLog
-    url: https://docs.snyk.io/snyk-api/changelog
-  - type: SDKs
-    url: https://github.com/snyk/snyk-sdk-java
-  - type: CLI
-    url: https://github.com/snyk/cli
-  - type: Kubernetes Operator
-    url: https://github.com/snyk/kubernetes-monitor
-  - type: Vocabulary
-    url: vocabulary/snyk-container-vocabulary.yml
-  - type: Examples
-    url: examples/snyk-container-list-projects-example.json
-  - type: Examples
-    url: examples/snyk-container-list-issues-example.json
-  - type: Integrations
-    url: https://snyk.io/integrations/
-  - type: LlmsText
-    url: https://docs.snyk.io/llms.txt
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/snyk-container/overview
+- type: AgenticAccess
+  url: agentic-access/snyk-container-agentic-access.yml
+- type: TrustCenter
+  url: security/snyk-container-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/snyk-container-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/snyk-container-domain-security.yml
+- type: Authentication
+  url: authentication/snyk-container-authentication.yml
+- type: Website
+  url: https://snyk.io/
+- type: Documentation
+  url: https://docs.snyk.io/scan-using-snyk/snyk-container
+- type: GettingStarted
+  url: https://docs.snyk.io/getting-started
+- type: GitHubOrganization
+  url: https://github.com/snyk
+- type: Blog
+  url: https://snyk.io/blog/
+- type: Pricing
+  url: https://snyk.io/plans/
+- type: Signup
+  url: https://app.snyk.io/signup
+- type: REST API
+  url: https://apidocs.snyk.io/
+- type: API Documentation
+  url: https://docs.snyk.io/snyk-api
+- type: ChangeLog
+  url: https://docs.snyk.io/snyk-api/changelog
+- type: SDKs
+  url: https://github.com/snyk/snyk-sdk-java
+- type: CLI
+  url: https://github.com/snyk/cli
+- type: Kubernetes Operator
+  url: https://github.com/snyk/kubernetes-monitor
+- type: Vocabulary
+  url: vocabulary/snyk-container-vocabulary.yml
+- type: Examples
+  url: examples/snyk-container-list-projects-example.json
+- type: Examples
+  url: examples/snyk-container-list-issues-example.json
+- type: Integrations
+  url: https://snyk.io/integrations/
+- type: LlmsText
+  url: https://docs.snyk.io/llms.txt
 integrations:
-  - name: View partner solutions
+- name: View partner solutions
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-parent: snyk
 x-relationship: product
