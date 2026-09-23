@@ -195,15 +195,6 @@ paths:
                 type: object
 components:
   schemas:
-    ProjectsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
     ProjectResponse:
       type: object
       properties:
@@ -279,6 +270,15 @@ components:
         last:
           type: string
           description: URL for last page
+    ProjectsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
   securitySchemes:
     BearerAuth:
       type: http

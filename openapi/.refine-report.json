@@ -1,9 +1,7 @@
 {
   "provider": "snyk-container",
   "sources": [
-    "snyk-container-container-projects-api-openapi.yml",
-    "snyk-container-issues-api-openapi.yml",
-    "snyk-container-targets-api-openapi.yml"
+    "_original/snyk-container-openapi.yml"
   ],
   "outputs": [
     "snyk-container-container-projects-api-openapi.yml",
@@ -14,10 +12,13 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "snyk-container-container-projects-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "snyk-container-issues-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "snyk-container-targets-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "snyk-container-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "snyk-container-container-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snyk-container-issues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "snyk-container-targets-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

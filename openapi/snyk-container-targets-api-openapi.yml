@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Snyk Container Container Projects Targets API
+  title: Snyk Container Targets API
   description: Snyk Container provides vulnerability scanning and remediation for container images, Kubernetes workloads, and Helm charts. The API enables organizations to integrate container security scanning into CI/CD pipelines, manage projects, retrieve vulnerability findings, and apply fixes programmatically.
   version: 2024-10-15
   contact:
@@ -153,6 +153,21 @@ paths:
           description: Target deleted
 components:
   schemas:
+    PaginationLinks:
+      type: object
+      properties:
+        prev:
+          type: string
+          description: URL for previous page
+        next:
+          type: string
+          description: URL for next page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
     TargetCreateRequest:
       type: object
       required:
@@ -218,21 +233,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/Target'
-    PaginationLinks:
-      type: object
-      properties:
-        prev:
-          type: string
-          description: URL for previous page
-        next:
-          type: string
-          description: URL for next page
-        first:
-          type: string
-          description: URL for first page
-        last:
-          type: string
-          description: URL for last page
   securitySchemes:
     BearerAuth:
       type: http
