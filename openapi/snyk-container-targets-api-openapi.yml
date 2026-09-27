@@ -153,6 +153,44 @@ paths:
           description: Target deleted
 components:
   schemas:
+    Target:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - target
+        attributes:
+          type: object
+          properties:
+            display_name:
+              type: string
+              description: Human-readable target name
+            url:
+              type: string
+              description: Container registry URL
+            created_at:
+              type: string
+              format: date-time
+            is_private:
+              type: boolean
+    TargetsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Target'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+    TargetResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Target'
     PaginationLinks:
       type: object
       properties:
@@ -195,44 +233,6 @@ components:
                 url:
                   type: string
                   description: Container registry URL
-    Target:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        type:
-          type: string
-          enum:
-          - target
-        attributes:
-          type: object
-          properties:
-            display_name:
-              type: string
-              description: Human-readable target name
-            url:
-              type: string
-              description: Container registry URL
-            created_at:
-              type: string
-              format: date-time
-            is_private:
-              type: boolean
-    TargetsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Target'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-    TargetResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Target'
   securitySchemes:
     BearerAuth:
       type: http

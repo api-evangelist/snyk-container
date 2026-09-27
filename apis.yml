@@ -39,7 +39,7 @@ tags:
 - Security
 - Vulnerability Management
 - DevSecOps
-- Open-Source
+- Open Source
 tags_raw:
 - Container Images
 - Containers
@@ -48,6 +48,7 @@ tags_raw:
 - Vulnerability Management
 - DevSecOps
 - Open Source
+- Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/snyk-container/refs/heads/main/apis.yml
 created: '2026-03-26'
 modified: '2026-09-16'

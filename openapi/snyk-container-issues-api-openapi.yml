@@ -140,21 +140,6 @@ components:
             $ref: '#/components/schemas/Issue'
         links:
           $ref: '#/components/schemas/PaginationLinks'
-    PaginationLinks:
-      type: object
-      properties:
-        prev:
-          type: string
-          description: URL for previous page
-        next:
-          type: string
-          description: URL for next page
-        first:
-          type: string
-          description: URL for first page
-        last:
-          type: string
-          description: URL for last page
     Issue:
       type: object
       properties:
@@ -227,6 +212,21 @@ components:
                           properties:
                             upgrade_package:
                               type: string
+    PaginationLinks:
+      type: object
+      properties:
+        prev:
+          type: string
+          description: URL for previous page
+        next:
+          type: string
+          description: URL for next page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
   securitySchemes:
     BearerAuth:
       type: http
