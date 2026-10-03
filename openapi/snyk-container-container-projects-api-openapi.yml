@@ -195,30 +195,6 @@ paths:
                 type: object
 components:
   schemas:
-    PaginationLinks:
-      type: object
-      properties:
-        prev:
-          type: string
-          description: URL for previous page
-        next:
-          type: string
-          description: URL for next page
-        first:
-          type: string
-          description: URL for first page
-        last:
-          type: string
-          description: URL for last page
-    ProjectsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
     Project:
       type: object
       properties:
@@ -274,11 +250,35 @@ components:
                       - daily
                       - weekly
                       - never
+    ProjectsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
     ProjectResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/Project'
+    PaginationLinks:
+      type: object
+      properties:
+        prev:
+          type: string
+          description: URL for previous page
+        next:
+          type: string
+          description: URL for next page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
   securitySchemes:
     BearerAuth:
       type: http

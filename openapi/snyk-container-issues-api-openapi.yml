@@ -131,15 +131,6 @@ paths:
                 $ref: '#/components/schemas/IssuesResponse'
 components:
   schemas:
-    IssuesResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Issue'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
     Issue:
       type: object
       properties:
@@ -227,6 +218,15 @@ components:
         last:
           type: string
           description: URL for last page
+    IssuesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
   securitySchemes:
     BearerAuth:
       type: http
