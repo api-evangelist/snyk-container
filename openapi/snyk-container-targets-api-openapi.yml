@@ -162,6 +162,11 @@ components:
             $ref: '#/components/schemas/Target'
         links:
           $ref: '#/components/schemas/PaginationLinks'
+    TargetResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Target'
     PaginationLinks:
       type: object
       properties:
@@ -228,11 +233,6 @@ components:
                 url:
                   type: string
                   description: Container registry URL
-    TargetResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Target'
   securitySchemes:
     BearerAuth:
       type: http
