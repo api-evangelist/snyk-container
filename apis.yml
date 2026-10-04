@@ -124,6 +124,9 @@ apis:
   - type: SpectralRules
     url: rules/snyk-container-rules.yml
 common:
+- type: CapabilityMap
+  url: capabilities/snyk-container-capability-edges.yml
+  name: Snyk Container Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/snyk-container/overview
 - type: AgenticAccess
