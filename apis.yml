@@ -124,6 +124,12 @@ apis:
   - type: SpectralRules
     url: rules/snyk-container-rules.yml
 common:
+- type: Plans
+  url: plans/snyk-container-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/snyk-container-rate-limits.yml
+- type: FinOps
+  url: finops/snyk-container-finops.yml
 - type: CapabilityMap
   url: capabilities/snyk-container-capability-edges.yml
   name: Snyk Container Business Capability Map
