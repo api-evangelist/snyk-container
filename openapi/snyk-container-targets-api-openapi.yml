@@ -153,59 +153,6 @@ paths:
           description: Target deleted
 components:
   schemas:
-    TargetsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Target'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-    TargetResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Target'
-    PaginationLinks:
-      type: object
-      properties:
-        prev:
-          type: string
-          description: URL for previous page
-        next:
-          type: string
-          description: URL for next page
-        first:
-          type: string
-          description: URL for first page
-        last:
-          type: string
-          description: URL for last page
-    Target:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        type:
-          type: string
-          enum:
-          - target
-        attributes:
-          type: object
-          properties:
-            display_name:
-              type: string
-              description: Human-readable target name
-            url:
-              type: string
-              description: Container registry URL
-            created_at:
-              type: string
-              format: date-time
-            is_private:
-              type: boolean
     TargetCreateRequest:
       type: object
       required:
@@ -233,6 +180,59 @@ components:
                 url:
                   type: string
                   description: Container registry URL
+    TargetsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Target'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+    Target:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - target
+        attributes:
+          type: object
+          properties:
+            display_name:
+              type: string
+              description: Human-readable target name
+            url:
+              type: string
+              description: Container registry URL
+            created_at:
+              type: string
+              format: date-time
+            is_private:
+              type: boolean
+    PaginationLinks:
+      type: object
+      properties:
+        prev:
+          type: string
+          description: URL for previous page
+        next:
+          type: string
+          description: URL for next page
+        first:
+          type: string
+          description: URL for first page
+        last:
+          type: string
+          description: URL for last page
+    TargetResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Target'
   securitySchemes:
     BearerAuth:
       type: http
