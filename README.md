@@ -1,4 +1,4 @@
-# Snyk Container (snyk-container)
+# Snyk Container
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,80 +66,169 @@
 
 Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes workloads. It integrates into existing development workflows to provide continuous security monitoring throughout the container lifecycle, scanning Docker images, Kubernetes manifests, and Helm charts for known CVEs and misconfigurations.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/snyk-container/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/snyk-container/refs/heads/main/apis.yml)
+**Areas:** Container Images · Containers · Kubernetes · Security · Vulnerability Management · DevSecOps · Open Source
 
-## Scope
+## Snyk Container on APIs.io
 
-- **Type:** Index
+Everything profiled for Snyk Container is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/snyk-container/](https://apis.io/providers/snyk-container/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Container Images
-- Containers
-- Kubernetes
-- Security
-- Vulnerability Management
-- DevSecOps
-- Open Source
+- [Snyk Container Projects API](https://apis.io/apis/snyk-container/snyk-container-container-projects-api/) — Manage Snyk Container scanning projects
+- [Snyk Container Issues API](https://apis.io/apis/snyk-container/snyk-container-issues-api/) — Retrieve container vulnerability issues
+- [Snyk Container Targets API](https://apis.io/apis/snyk-container/snyk-container-targets-api/) — Manage scan targets (images, registries)
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Snyk Container
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Snyk Container helps developers find and fix vulnerabilities in container images and Kubernetes workloads, integrating into existing development workflows to provide continuous security monitoring throughout the container lifecycle.
+- [Snyk Container Agentic Access](https://apis.io/agentic-access/snyk-container/snyk-container-agentic-access/)
 
-- **Human URL:** [https://snyk.io/product/container-vulnerability-management/](https://snyk.io/product/container-vulnerability-management/)
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Container Images
-- Containers
-- Kubernetes
-- Security
-- Vulnerability Management
-- DevSecOps
+- [Snyk Container Issue](https://apis.io/schemas/snyk-container/snyk-container-issue/)
+- [Snyk Container Project](https://apis.io/schemas/snyk-container/snyk-container-project/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.snyk.io/scan-using-snyk/snyk-container)
-- [Getting Started](https://docs.snyk.io/getting-started)
-- [OpenAPI](openapi/snyk-container-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/snyk-container.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/snyk-container.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [J S O N  Schema](json-schema/snyk-container-project-schema.json)
-- [J S O N  Schema](json-schema/snyk-container-issue-schema.json)
-- [J S O N  Structure](json-structure/snyk-container-project-structure.json)
-- [J S O N- L D  Context](json-ld/snyk-container-context.jsonld)
-- [Spectral  Rules](rules/snyk-container-rules.yml)
-- [Capabilities](capabilities/container-security.yaml)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Snyk Container Project Structure](https://apis.io/json-structure/snyk-container/snyk-container-project-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Snyk Container Context](https://apis.io/jsonld/snyk-container/snyk-container-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Snyk Container Vocabulary](https://apis.io/vocabularies/snyk-container/snyk-container-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Snyk Container List Issues Example](https://apis.io/examples/snyk-container/snyk-container-list-issues-example/)
+- [Snyk Container List Projects Example](https://apis.io/examples/snyk-container/snyk-container-list-projects-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Snyk Container API](https://apis.io/collections/snyk-container/open-snyk-container/)
+- [Snyk Container Container Projects API](https://apis.io/collections/snyk-container/open-snyk-container-container-projects-api/)
+- [Snyk Container Container Projects Issues API](https://apis.io/collections/snyk-container/open-snyk-container-issues-api/)
+- [Snyk Container Container Projects Targets API](https://apis.io/collections/snyk-container/open-snyk-container-targets-api/)
+- [Snyk Container Container Projects API](https://apis.io/collections/snyk-container/postman-snyk-container-container-projects-api/)
+- [Snyk Container Container Projects Issues API](https://apis.io/collections/snyk-container/postman-snyk-container-issues-api/)
+- [Snyk Container Container Projects Targets API](https://apis.io/collections/snyk-container/postman-snyk-container-targets-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Snyk Container — jsonschema rules](https://apis.io/rules/snyk-container/snyk-container-jsonschema-spectral-rules/)
+- [Snyk Container API Rules](https://apis.io/rules/snyk-container/snyk-container-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Snyk Container Authentication](https://apis.io/security/snyk-container/snyk-container-authentication/)
+- [Snyk Container Domain Security](https://apis.io/security/snyk-container/snyk-container-domain-security/)
+- [Snyk Container Trust Center](https://apis.io/security/snyk-container/snyk-container-trust-center/)
+- [Snyk Container Vulnerability Disclosure](https://apis.io/security/snyk-container/snyk-container-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Snyk Container Plans Pricing](https://apis.io/plans/snyk-container/snyk-container-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Snyk Container Rate Limits](https://apis.io/rate-limits/snyk-container/snyk-container-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Snyk Container Finops](https://apis.io/finops/snyk-container/snyk-container-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://snyk.io/)
 - [Documentation](https://docs.snyk.io/scan-using-snyk/snyk-container)
-- [Getting Started](https://docs.snyk.io/getting-started)
-- [GitHub Organization](https://github.com/snyk)
-- [Blog](https://snyk.io/blog/)
+- [Getting started](https://docs.snyk.io/getting-started)
 - [Pricing](https://snyk.io/plans/)
-- [Sign Up](https://app.snyk.io/signup)
-- [R E S T  A P I](https://apidocs.snyk.io/)
-- [A P I  Documentation](https://docs.snyk.io/snyk-api)
 - [Changelog](https://docs.snyk.io/snyk-api/changelog)
-- [SDK](https://github.com/snyk/snyk-sdk-java)
-- [C L I](https://github.com/snyk/cli)
-- [Kubernetes  Operator](https://github.com/snyk/kubernetes-monitor)
-- [Vocabulary](vocabulary/snyk-container-vocabulary.yml)
-- [Examples](examples/snyk-container-list-projects-example.json)
-- [Examples](examples/snyk-container-list-issues-example.json)
-- [Integrations](https://snyk.io/integrations/)
-- [L L Ms Txt](https://docs.snyk.io/llms.txt)
+- [Blog](https://snyk.io/blog/)
+- [GitHub](https://github.com/snyk)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 51.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 64.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 58.3 |
+| Access clarity | 39.5 |
+
+**Agent readiness 23.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 27.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/snyk-container/](https://apis.io/providers/snyk-container/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Snyk Container: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/snyk-container/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
